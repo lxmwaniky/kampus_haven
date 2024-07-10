@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:kampus_haven/models/listing.dart';
 import 'package:kampus_haven/pages/home_page.dart';
+import 'package:kampus_haven/pages/listing_detail_page.dart';
 import 'package:kampus_haven/widgets/hostel_display.dart';
 
 class FavoritesPage extends StatefulWidget {
