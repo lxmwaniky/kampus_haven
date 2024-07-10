@@ -40,4 +40,6 @@ class Listing {
       description: json['description'],
     );
   }
+
+  toJson() {}
 }
