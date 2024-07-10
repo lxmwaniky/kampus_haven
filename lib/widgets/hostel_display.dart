@@ -3,25 +3,25 @@ import 'package:kampus_haven/models/listing.dart';
 
 class HostelDisplay extends StatelessWidget {
   final Listing listing;
-  const HostelDisplay({Key? key, required this.listing}) : super(key: key);
+  const HostelDisplay({super.key, required this.listing});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(16),
+      margin: const EdgeInsets.all(16),
       elevation: 4,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Horizontal image scrolling
-          Container(
+          SizedBox(
             height: 200,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: listing.photos.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.network(
@@ -42,21 +42,21 @@ class HostelDisplay extends StatelessWidget {
               children: [
                 Text(
                   listing.name,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   '\$${listing.price}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Colors.green,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   'Location: ${listing.location}',
                   style: TextStyle(
@@ -64,7 +64,7 @@ class HostelDisplay extends StatelessWidget {
                     color: Colors.grey[600],
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   listing.vacant ? 'Available' : 'Occupied',
                   style: TextStyle(
@@ -72,7 +72,7 @@ class HostelDisplay extends StatelessWidget {
                     color: listing.vacant ? Colors.green : Colors.red,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   'Contact: ${listing.contact}',
                   style: TextStyle(
@@ -80,7 +80,7 @@ class HostelDisplay extends StatelessWidget {
                     color: Colors.grey[600],
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   'Distance from School: ${listing.distanceFromSchool} km',
                   style: TextStyle(
@@ -88,7 +88,7 @@ class HostelDisplay extends StatelessWidget {
                     color: Colors.grey[600],
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   'Description: ${listing.description}',
                   style: TextStyle(
@@ -96,15 +96,15 @@ class HostelDisplay extends StatelessWidget {
                     color: Colors.grey[600],
                   ),
                 ),
-                SizedBox(height: 8),
-                Text(
+                const SizedBox(height: 8),
+                const Text(
                   'Amenities:',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Wrap(
                   spacing: 8.0,
                   children: listing.amenities

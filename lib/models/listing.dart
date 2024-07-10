@@ -1,7 +1,7 @@
 class Listing {
   final String id;
   final String name;
-  final String price; // Keep as String
+  final String price;
   final String location;
   final bool vacant;
   final List<String> photos;
