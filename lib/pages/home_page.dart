@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kampus_haven/models/listing.dart';
-import 'package:kampus_haven/pages/favorites_page.dart';
 import 'package:kampus_haven/pages/listing_detail_page.dart';
 import 'package:kampus_haven/services/api_service.dart';
 import 'package:kampus_haven/widgets/hostel_display.dart';
@@ -42,20 +41,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         titleSpacing: 30,
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.star,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const FavoritesPage()),
-              );
-            },
-          ),
-        ],
       ),
       body: RefreshIndicator(
         onRefresh: _refreshListings,

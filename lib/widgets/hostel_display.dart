@@ -42,14 +42,6 @@ class HostelDisplay extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 4.0),
-                Text(
-                  '\$${listing.price}',
-                  style: const TextStyle(
-                    color: Colors.green,
-                    fontSize: 13,
-                  ),
-                ),
               ],
             ),
           ),

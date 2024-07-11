@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:kampus_haven/main.dart';
 import 'package:kampus_haven/models/listing.dart';
 import 'package:kampus_haven/widgets/hostel_display_full.dart';
-import 'package:kampus_haven/pages/image_viewer_page.dart';
 
 class ListingDetailPage extends StatelessWidget {
   final Listing listing;
