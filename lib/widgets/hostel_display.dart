@@ -3,26 +3,58 @@ import 'package:kampus_haven/models/listing.dart';
 
 class HostelDisplay extends StatelessWidget {
   final Listing listing;
+
   const HostelDisplay({super.key, required this.listing});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.all(8),
-      elevation: 4,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: AspectRatio(
-          aspectRatio: 16 / 9,
-          child: Image.network(
-            listing.photos.isNotEmpty
-                ? listing.photos.first
-                : 'https://via.placeholder.com/150',
-            width: double.infinity,
-            fit: BoxFit.cover,
+    return Stack(
+      children: [
+        Card(
+          clipBehavior: Clip.antiAlias,
+          child: AspectRatio(
+            aspectRatio: 16 / 9,
+            child: Image.network(
+              listing.photos.first,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
-      ),
+        Positioned(
+          bottom: 5.0,
+          left: 10.0,
+          right: 10.0,
+          child: Container(
+            color: Colors.black54,
+            padding:
+                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  listing.name,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                    color: Colors.white,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 4.0),
+                Text(
+                  '\$${listing.price}',
+                  style: const TextStyle(
+                    color: Colors.green,
+                    fontSize: 13,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

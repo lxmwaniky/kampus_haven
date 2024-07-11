@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:kampus_haven/main.dart';
 import 'package:kampus_haven/models/listing.dart';
-import 'package:kampus_haven/pages/home_page.dart';
 import 'package:kampus_haven/widgets/hostel_display_full.dart';
+import 'package:kampus_haven/pages/image_viewer_page.dart';
 
 class ListingDetailPage extends StatelessWidget {
   final Listing listing;
   const ListingDetailPage({super.key, required this.listing});
+
+  void _addToFavorites() {
+    if (!favoritesBox.values.contains(listing)) {
+      favoritesBox.put(listing.id, listing);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +28,12 @@ class ListingDetailPage extends StatelessWidget {
             fontSize: 26,
           ),
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.star),
+            onPressed: _addToFavorites,
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: HostelDisplayFull(listing: listing),

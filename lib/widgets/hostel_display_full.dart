@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kampus_haven/models/listing.dart';
+import 'package:kampus_haven/pages/image_viewer_page.dart';
 
 class HostelDisplayFull extends StatelessWidget {
   final Listing listing;
@@ -20,15 +21,28 @@ class HostelDisplayFull extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: listing.photos.length,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.network(
-                      listing.photos[index],
-                      height: 200,
-                      width: 200,
-                      fit: BoxFit.cover,
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ImageViewerPage(
+                          photos: listing.photos,
+                          initialIndex: index,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        listing.photos[index],
+                        height: 200,
+                        width: 200,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 );

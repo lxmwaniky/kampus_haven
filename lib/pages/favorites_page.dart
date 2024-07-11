@@ -1,67 +1,72 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:kampus_haven/models/listing.dart';
-import 'package:kampus_haven/pages/home_page.dart';
 import 'package:kampus_haven/pages/listing_detail_page.dart';
 import 'package:kampus_haven/widgets/hostel_display.dart';
+import 'package:kampus_haven/main.dart';
 
-class FavoritesPage extends StatefulWidget {
+class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
 
   @override
-  _FavoritesPageState createState() => _FavoritesPageState();
-}
-
-class _FavoritesPageState extends State<FavoritesPage> {
-  late Box<Listing> _favoritesBox;
-
-  @override
-  void initState() {
-    super.initState();
-    _openBox();
-  }
-
-  Future<void> _openBox() async {
-    // Close the box if already open
-    await Hive.close();
-    // Open the favorites box
-    _favoritesBox = await Hive.openBox<Listing>('favorites');
-    setState(() {});
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final List<Listing> favoriteListings = favoritesBox.values.toList().cast<Listing>();
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Favorite Listings'),
+        backgroundColor: const Color(0xFF18191B),
+        title: const Text(
+          'Favorite Listings',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 26,
+          ),
+        ),
       ),
-      body: _favoritesBox.isOpen
+      body: favoriteListings.isNotEmpty
           ? GridView.builder(
               padding: const EdgeInsets.all(16),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
-                childAspectRatio: 16 / 10,
+                childAspectRatio: 0.75,
               ),
-              itemCount: _favoritesBox.length,
+              itemCount: favoriteListings.length,
               itemBuilder: (context, index) {
-                final listing = _favoritesBox.getAt(index);
+                final listing = favoriteListings[index];
                 return GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            ListingDetailPage(listing: listing),
+                        builder: (context) => ListingDetailPage(listing: listing),
                       ),
                     );
                   },
-                  child: HostelDisplay(listing: listing!),
+                  child: Column(
+                    children: [
+                      HostelDisplay(listing: listing),
+                      const SizedBox(height: 10),
+                      Text(
+                        listing.name,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 );
               },
             )
-          : const Center(child: CircularProgressIndicator()),
+          : const Center(
+              child: Text(
+                'No favorites yet.',
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
+            ),
     );
   }
 }

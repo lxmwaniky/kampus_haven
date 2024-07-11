@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:kampus_haven/models/listing.dart';
+import 'package:kampus_haven/services/listing_adapter.dart';
 import 'package:kampus_haven/pages/landing_page.dart';
+
+late Box<Listing> favoritesBox;
 
 void main() async {
   await Hive.initFlutter();
-  await Hive.openBox('favorites');
+  Hive.registerAdapter(ListingAdapter());
+  favoritesBox = await Hive.openBox<Listing>('favorites');
   runApp(const MyApp());
 }
 

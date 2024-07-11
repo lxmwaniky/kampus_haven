@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kampus_haven/models/listing.dart';
+import 'package:kampus_haven/pages/favorites_page.dart';
 import 'package:kampus_haven/pages/listing_detail_page.dart';
 import 'package:kampus_haven/services/api_service.dart';
 import 'package:kampus_haven/widgets/hostel_display.dart';
-import 'package:kampus_haven/pages/favorites_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -69,6 +69,12 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const Icon(
+                      Icons.wifi_tethering_error,
+                      color: Colors.redAccent,
+                      size: 50,
+                    ),
+                    const SizedBox(height: 20),
                     const Text(
                       'Failed to load data',
                       style: TextStyle(color: Colors.white),
@@ -86,10 +92,10 @@ class _HomePageState extends State<HomePage> {
               return GridView.builder(
                 padding: const EdgeInsets.all(16),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1,
+                  crossAxisCount: 2,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
-                  childAspectRatio: 16 / 10, // Adjusted this ratio
+                  childAspectRatio: 16 / 10,
                 ),
                 itemCount: listings.length,
                 itemBuilder: (context, index) {
