@@ -32,12 +32,17 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: const Color(0xFF18191B),
       appBar: AppBar(
         backgroundColor: const Color(0xFF18191B),
-        title: const Text(
-          'Kampus Haven',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 26,
+        title: GestureDetector(
+          onTap: () {
+            _refreshListings();
+          },
+          child: const Text(
+            'Kampus Haven',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 26,
+            ),
           ),
         ),
         titleSpacing: 30,
