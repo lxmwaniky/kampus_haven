@@ -74,27 +74,39 @@ class _HomePageState extends State<HomePage> {
               );
             } else if (snapshot.hasData) {
               List<Listing> listings = snapshot.data!;
-              return GridView.builder(
-                padding: const EdgeInsets.all(16),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                  childAspectRatio: 16 / 10,
-                ),
-                itemCount: listings.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              ListingDetailPage(listing: listings[index]),
-                        ),
+              return LayoutBuilder(
+                builder: (context, constraints) {
+                  int crossAxisCount = 2;
+                  if (constraints.maxWidth < 600) {
+                    crossAxisCount = 1;
+                  } else if (constraints.maxWidth >= 600 && constraints.maxWidth < 1200) {
+                    crossAxisCount = 2;
+                  } else {
+                    crossAxisCount = 3;
+                  }
+                  return GridView.builder(
+                    padding: const EdgeInsets.all(16),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: crossAxisCount,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                      childAspectRatio: 16 / 10,
+                    ),
+                    itemCount: listings.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  ListingDetailPage(listing: listings[index]),
+                            ),
+                          );
+                        },
+                        child: HostelDisplay(listing: listings[index]),
                       );
                     },
-                    child: HostelDisplay(listing: listings[index]),
                   );
                 },
               );
