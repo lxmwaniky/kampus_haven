@@ -19,7 +19,7 @@ class LandingPage extends StatelessWidget {
               children: [
                 const SizedBox(height: 60),
                 const Text(
-                  'Welcome to Kampus Haven',
+                  'Welcome to Kampus Haven.',
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
