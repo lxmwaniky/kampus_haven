@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/listing.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ApiService {
-  static const String baseUrl = 'https://kampus-haven-api.onrender.com';
+  static String baseUrl = dotenv.env['API_URL'] ?? 'http://localhost:3000';
 
   static Future<List<Listing>> fetchListings() async {
     final response = await http.get(Uri.parse('$baseUrl/listings'));
